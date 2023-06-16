@@ -1,0 +1,61 @@
+@model NeutronTMS.Models.Feedback
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Feedback</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+                <br>
+            </div>
+            <div class="form-group">
+                <label asp-for="TrainingId" class="control-label"></label>
+                <select asp-for="TrainingId" type="url" class="form-control" asp-items="ViewBag.TrainingId"> </select>
+                <span asp-validation-for="Training" class="text-danger"></span>
+                <br>
+            </div>
+            <div class="form-group">
+                <label asp-for="FeedbackLink" class="control-label"></label>
+                <input type="url" asp-for="FeedbackLink" class="form-control" />
+                <span asp-validation-for="FeedbackLink" class="text-danger"></span>
+                <br>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                @* <input asp-for="Status" class="form-control" /> *@
+                <select asp-for="Status" class="form-control" asp-items="ViewBag.statusList"> </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+                <br>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+                <br>
+            </div>
+            <div class="form-group d-none">
+                <label asp-for="CreatedById" class="control-label"></label>
+                @* <select asp-for="CreatedById" class="form-control" asp-items="ViewBag.CreatedById"></select> *@
+                <input asp-for="CreatedById" class="form-control" value="@ViewBag.CreatedById" />
+                <span asp-validation-for="CreatedById" class="text-danger"></span>
+                <br>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-success" /> |
+                <a asp-action="Index"><button type="button" class="btn"style="margin-left: 0.5em;background-color:#fcd800;">Back to List</button></a>
+            </div> 
+        </form>
+    </div>
+</div>

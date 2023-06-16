@@ -1,0 +1,41 @@
+@using NeutronTMS.Models
+@model List<NeutronTMS.Models.UserRolesViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>User Roles</h1>
+<br>
+<br>
+ <form asp-controller="UserRoles" asp-action="Index" class="input-group mb-3">
+    <input type="search" class="form-control" name="SearchString" placeholder="Search" aria-describedby="button-addon2">
+    <button class="btn btn-info" type="submit" id="button-addon2" value="Filter" style="margin-left:0.4em">Search</button>
+    <button value ="#"class="btn btn-outline-info" type="submit" style="margin-left:0.6em">Back</button>
+    
+</form>
+<br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Roles</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+        <tr>
+            <td>@user.FirstName</td>
+            <td>@user.LastName</td>
+            <td>@user.Email</td>
+            <td>@string.Join(" , ", user.Roles.ToList())</td>
+            <td>
+                <a class="btn btn-primary" asp-controller="UserRoles" asp-action="Manage" asp-route-userId="@user.UserId" style="background-color:#00A6CA;color:white;">Manage Roles</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

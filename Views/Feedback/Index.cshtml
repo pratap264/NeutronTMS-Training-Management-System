@@ -1,0 +1,81 @@
+@model IEnumerable<NeutronTMS.Models.Feedback>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Feedback Page</h1>
+
+<p style=" display: flex;
+  justify-content: end;">
+    <a asp-action="Create"><button type="button" class="btn btn-success">Create New</button></a>
+</p>
+<br>
+  <form asp-controller="Feedback" asp-action="Index" class="input-group mb-3">
+        <input type="search" class="form-control" name="SearchString" placeholder="Search"
+            aria-describedby="button-addon2">
+        <button class="btn btn-info" type="submit" id="button-addon2" value="Filter"
+            style="margin-left:0.4em">Search</button>
+        <button value="#" class="btn btn-outline-info" type="submit" style="margin-left:0.6em">Back</button>
+
+    </form>
+    <br>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Training)
+            </th>
+            @* <th>
+                @Html.DisplayNameFor(model => model.FeedbackLink)
+            </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Training.Title)
+                </td>
+                @* <td>
+                    <a href="
+                @Html.DisplayFor(modelItem => item.FeedbackLink)">
+                        @Html.DisplayFor(modelItem => item.FeedbackLink)</a>
+
+                </td> *@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedBy.Email)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id"><button type="button" class="btn btn-warning">Edit</button></a> 
+                    <a asp-action="Details" asp-route-id="@item.Id"><button type="button" class="btn btn-info">Details</button></a> 
+                    <a asp-action="Delete" asp-route-id="@item.Id"><button type="button" class="btn btn-danger">Delete</button></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,77 @@
+@model NeutronTMS.Models.Assessment
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Assessment</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+                <br>
+            </div>
+            <div class="form-group">
+                <label asp-for="TrainingId" class="control-label"></label>
+                <select asp-for="TrainingId" class="form-control" asp-items="ViewBag.TrainingId"> </select>
+                <span asp-validation-for="Training" class="text-danger"></span>
+                <br>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+                <br>
+            </div>
+            <div class="form-group">
+                <label asp-for="DocumentLink" class="control-label"></label>
+                <input asp-for="DocumentLink" class="form-control" />
+                <span asp-validation-for="DocumentLink" class="text-danger"></span>
+                <br>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubmissionLink" class="control-label"></label>
+                <input asp-for="SubmissionLink" class="form-control" />
+                <span asp-validation-for="SubmissionLink" class="text-danger"></span>
+                <br>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                @* <input asp-for="Status" class="form-control" /> *@
+                <select asp-for="Status" class="form-control" asp-items="ViewBag.statusList"> </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+                <br>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+                <br>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+                <br>
+            </div>
+            <div class="form-group d-none">
+                <label asp-for="CreatedById" class="control-label"></label>
+                @* <select asp-for="CreatedById" class ="form-control" asp-items="ViewBag.CreatedById"></select> *@
+                <input asp-for="CreatedById" class="form-control" value="@ViewBag.CreatedById" />
+                <br>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" /> |
+                <a asp-action="Index"><button type="button" class="btn"style="margin-left: 0.5em;background-color:#fcd800;">Back to List</button></a>
+            </div>
+        </form>
+    </div>
+</div>
